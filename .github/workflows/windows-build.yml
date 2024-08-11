@@ -1,0 +1,44 @@
+name: Windows CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.12'
+
+    - name: Install Poetry
+      run: |
+        (Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | python -
+
+    - name: Add custom directory to PATH
+      run: echo "C:\Users\runneradmin\AppData\Roaming\Python\Scripts\" >> $env:GITHUB_PATH
+
+    - name: Install dependencies
+      run: |
+        poetry install --no-interaction --no-root --no-dev
+
+    - name: Build package
+      run: |
+        poetry run pyinstaller utils\bundle\bundle.spec
+
+    - name: Upload package
+      if: success()
+      uses: actions/upload-artifact@v3
+      with:
+        name: build-artifact
+        path: dist/
