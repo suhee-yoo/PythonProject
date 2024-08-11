@@ -1,0 +1,26 @@
+[run]
+branch = True
+source = src
+
+[report]
+omit =
+    */tests/*
+    */.venv/*
+    */__init__.py
+show_missing = True
+skip_covered = True
+precision = 2
+
+[html]
+directory = coverage_html_report
+
+[xml]
+output = coverage.xml
+
+[paths]
+source =
+    src/
+    */site-packages/
+
+[tool:pytest]
+addopts = --maxfail=2 -v
