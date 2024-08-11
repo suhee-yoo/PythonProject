@@ -8,7 +8,7 @@ def greet(name: str) -> str:
     return greeting
 
 
-def main():
+def main() -> None:
     if len(sys.argv) > 1:
         name = sys.argv[1]
     else:
