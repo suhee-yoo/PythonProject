@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: General Query
+    url: https://github.com/suhee-yoo/PythonProject/issues/new/
+    about: Use this link to ask a general question.
