@@ -1,0 +1,10 @@
+[flake8]
+# 기본 설정
+max-line-length = 79             # 최대 줄 길이 설정
+ignore = E203, E266, E501, W503  # 무시할 규칙 목록
+exclude =                        # 검사에서 제외할 파일 및 디렉토리
+    .git,
+    __pycache__,
+    build,
+    dist
+max-complexity = 10              # 코드 복잡도 허용 기준 (McCabe complexity)
